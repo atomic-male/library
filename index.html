@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Library Catalog</h2>
+  <table>
+    <thead>
+      <tr><th>Title</th><th>Author</th><th>Status</th></tr>
+    </thead>
+    <tbody id="inventory"></tbody>
+  </table>
+
+  <script>
+    fetch('data.json?t=' + new Date().getTime())
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.getElementById('inventory');
+        tbody.innerHTML = data.map(book => 
+          `<tr><td>${book.title}</td><td>${book.author}</td><td>${book.status}</td></tr>`
+        ).join('');
+      });
+  </script>
+</body>
+</html>
